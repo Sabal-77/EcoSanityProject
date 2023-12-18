@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    Admin Login
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{{url_for('static', filename='dash_login.css')}}">
+    <link rel="stylesheet" media="screen and (max-width:480px)" href="{{url_for('static', filename='phone/dash_login.css')}}">
+{% endblock css %}
+{% block body %}
+<section class="admin">
+    <form action="/dashboard" method="POST">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            <h2 class="flash-{{category}}">{{message}}</h2>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {{form.hidden_tag()}}
+        {{form.username(placeholder='Username')}}
+        {{form.pw(placeholder='Password')}}
+        {{form.submit}}
+    </form>
+</section>
+{% endblock body %}

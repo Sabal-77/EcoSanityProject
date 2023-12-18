@@ -1,0 +1,14 @@
+{
+    "config": {
+        "local_server": 1,
+        "local_db": "sqlite:///ecosanity.db",
+        "production__db": 0,
+        "secret_key": "eco&356sanity%&738",
+        "posts_to_show": 3
+    },
+    "posts": {
+        "id": 1,
+        "slug": "article-1",
+        "total_posts": 0
+    }
+}

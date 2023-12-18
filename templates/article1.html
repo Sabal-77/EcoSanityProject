@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+Article
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='article.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='article1.css')}}">
+<link rel="stylesheet" media="screen and (max-width:767px)" href="{{url_for('static', filename='phone/article.css')}}">
+{% endblock css %}
+{% block body %}
+<section class="blog-posts">
+        <div class="posts">
+            <h2>{{post.title}}</h2>
+            <h2 class="tagline">{{post.subtitle}}</h2>
+            <p class="content">{{post.article}}</p>
+        </div>
+    <div class="buttons">
+        <button class="btns" onclick="window.location.href='/articles'">&larr; Back</button>
+    </div>
+</section>
+{% endblock body %}

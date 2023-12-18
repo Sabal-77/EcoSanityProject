@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    Admin Panel
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{{url_for('static', filename='event.css')}}">
+    <link rel="stylesheet" media="screen and (max-width:767px)" href="{{url_for('static', filename='phone/event.css')}}">
+{% endblock css %}
+{% block body %}
+    <section class="events">
+        <h3>EcoSanity's Official Events</h3>
+        <table>
+            <tr>
+                <th>SNO</th>
+                <th>Title</th>
+                <th>Link</th>
+                <th>Date</th>
+            </tr>
+            {% for evt in event %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{evt.title}}</td>
+                    <td><a href="{{evt.link}}">Click Here</a></td>
+                    <td>{{evt.date}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+{% endblock body %}

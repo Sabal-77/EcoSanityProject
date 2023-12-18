@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+Manage Articles
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='articleform.css')}}">
+{% endblock css %}
+{% block body %}
+<section class="articles">
+    <form action="/dashboard/manage-event/{{id}}" method="POST">
+        {{form.hidden_tag()}}
+        {% if id==0 %}
+        {{form.title(placeholder='Title')}}
+        {{form.link(placeholder='Link')}}
+        {{form.date(placeholder='Date')}}
+        <div class="buttons">
+            {{form.submit}}
+            <a href="/dashboard" class="btn">Go Back</a>
+        </div>
+        {% else %}
+        {{form.title(value=event.title)}}
+        {{form.link(value=event.link)}}
+        {{form.date(value=event.date)}}
+        <div class="buttons">
+            {{form.submit(value="Update")}}
+            <a href="/dashboard" class="btn">Go Back</a>
+        </div>
+        {% endif %}
+    </form>
+</section>
+{% endblock body %}

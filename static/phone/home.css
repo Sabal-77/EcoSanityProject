@@ -1,0 +1,18 @@
+.intro {
+    margin: 1.3rem 0;
+}
+
+.intro .heading {
+    font-size: 1.1rem;
+}
+
+.intro p {
+    font-size: 0.9rem;
+}
+
+.btn {
+    width: 100px;
+    height: 25px;
+    font-size: 0.9rem;
+    line-height: 25px;
+}

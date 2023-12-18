@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
+    <link rel="stylesheet" media="screen and (max-width:480px)" href="{{url_for('static', filename='phone/home.css')}}">
+{% endblock css %}
+{% block body %}
+    <section id="home">
+        <div class="intro">
+            <p class="heading"><span class="glow">Eco Sanity</span></p>
+            <p>Welcome to <span class="glow">"Eco Sanity,"</span> where we're redefining the way the world thinks about sanitation and sustainability.<br><br>Eco Sanity is not an ordinary project; it's a commitment to a cleaner, greener future. We're in search of passionate individuals who dare to dream of a world free from waste. If you love sanitation and green environment, we've got a place for you.
+            </p>
+        </div>
+        <a href="https://discord.gg/VabvyaP6e2" class="btn">Join our Discord</a>
+    </section>
+{% endblock body %}

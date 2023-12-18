@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSanity - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='base.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" media="screen and (max-width:767px)" href="{{url_for('static', filename='phone/base.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    {% block css %}{% endblock css %}
+</head>
+<body>
+    <nav id="navbar">
+        <div id="navlogo">
+            <img src="{{url_for('static', filename='images/logo.png')}}" alt="EcoSanity">
+        </div>
+        <div>
+            <ul id="navlist">
+                <li class="navitems"><a href='/'>Home</a></li>
+                <li class="navitems"><a href='/about'>About Us</a></li>
+                <li class="navitems"><a href='/events'>Events</a></li>
+                <li class="navitems"><a href='/articles'>Articles</a></li>
+                <li class="navitems"><a href='/contact'>Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    {% block body %}{% endblock body %}
+    <footer>
+        <div class="footer-items">
+            <h2>2023 &copy; All Rights Reserved.</h2>
+        </div>
+    </footer>
+</body>
+</html>

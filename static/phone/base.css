@@ -1,0 +1,43 @@
+#navbar {
+    flex-direction: column;
+    height: 23vh;
+}
+
+#navbar::before {
+    height: 23vh;
+}
+
+#navlogo img{
+    width: 70px;
+    height: 70px;
+}
+
+/* Navigation Bar: Navitems */
+
+#navlist {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+#navlist .navitems a {
+    padding: 10px;
+    font-size:0.9rem;
+}
+
+/* Footer */
+
+#home::before {
+    height: 100vh; /* Set the background height to 100% of the viewport height */
+}
+
+footer {
+    height: 15vh; /* Adjust the footer height for phones */
+}
+
+footer::before {
+    height: 15vh; /* Adjust the pseudo-element height for phones */
+}
+
+.footer-items h2{
+    font-size:1rem;
+}

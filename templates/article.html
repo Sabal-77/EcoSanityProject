@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+Article
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="static/article.css">
+<link rel="stylesheet" media="screen and (max-width:767px)" href="{{url_for('static', filename='phone/article.css')}}">
+{% endblock css %}
+{% block body %}
+<section class="blog">
+    <h2>Articles</h2>
+</section>
+<section class="blog-posts">
+    {% if posts|length==0 %}
+    <h2 class="alert">No Posts to Show</h2>
+    {% else %}
+    {% for post in posts %}
+    <a href="/articles/{{post.slug}}">
+        <div class="posts">
+            <h2 class="heading">{{post.title}}</h2>
+            <h2 class="tagline">{{post.subtitle}}</h2>
+            <p class="content">{{post.article[:100]}}...</p>
+        </div>
+    </a>
+    {% endfor %}
+    <div class="buttons">
+        <button class="btns" onclick="window.location.href='{{prev}}'">&larr; Previous</button>
+        <button class="btns" id="btn-next" onclick="window.location.href='{{next}}'">Next &rarr;</button>
+    </div>
+    {% endif %}
+</section>
+{% endblock body %}

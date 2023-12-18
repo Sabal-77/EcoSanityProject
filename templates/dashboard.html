@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Admin Panel
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{{url_for('static', filename='dashboard.css')}}">
+{% endblock css %}
+{% block body %}
+    <section class="articles">
+        <h2>Manage Articles</h2>
+        <a href="/dashboard/manage-articles/0" class="btn">Post Article</a>
+        <table>
+            <tr>
+                <th>SNO</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Actions</th>
+            </tr>
+            {% for article in articles %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{article.title}}</td>
+                    <td>{{article.subtitle}}</td>
+                    <td><a href="/dashboard/manage-articles/{{article.id}}" class="btn">Edit</a><a href="/dashboard/delete-article/{{article.id}}" class="btn">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section class="events">
+        <h2>Manage Events</h2>
+        <a href="/dashboard/manage-event/0" class="btn">Add Event</a>
+        <table>
+            <tr>
+                <th>SNO</th>
+                <th>Title</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+            {% for evt in event %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{evt.title}}</td>
+                    <td>{{evt.link}}</td>
+                    <td><a href="/dashboard/manage-event/{{evt.id}}" class="btn">Edit</a><a href="/dashboard/delete-event/{{evt.id}}" class="btn">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+{% endblock body %}

@@ -1,0 +1,12 @@
+.blog h2{
+    font-size:1.1rem;
+}
+
+.buttons .btns{
+    font-size: 0.8rem;
+    width: 80px;
+}
+
+#btn-next {
+    width: 61px;
+}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+Manage Articles
+{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='articleform.css')}}">
+{% endblock css %}
+{% block body %}
+<section class="articles">
+    <form action="/dashboard/manage-articles/{{id}}" method="POST">
+        {{form.hidden_tag()}}
+        {% if id==0 %}
+        {{form.slug(value=data['posts']['slug'], class='read-only')}}
+        {{form.title(placeholder='Title')}}
+        {{form.subtitle(placeholder='Subtitle')}}
+        {{form.article(placeholder='Article', class="textarea")}}
+        <div class="buttons">
+            {{form.submit}}
+            <a href="/dashboard" class="btn">Go Back</a>
+        </div>
+        {% else %}
+        {{form.slug(value=article1.slug, class='read-only')}}
+        {{form.title(value=article1.title)}}
+        {{form.subtitle(value=article1.subtitle)}}
+        {{form.article(value=article1.article, class="textarea")}}
+        <div class="buttons">
+            {{form.submit(value="Update")}}
+            <a href="/dashboard" class="btn">Go Back</a>
+        </div>
+        {% endif %}
+    </form>
+</section>
+{% endblock body %}
