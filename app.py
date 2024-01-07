@@ -8,6 +8,8 @@ import json
 import time
 from datetime import timedelta, datetime
 import math
+import openai
+import os
 
 with open('config.json', 'r') as f:
     data = json.load(f)
@@ -78,9 +80,34 @@ class Contact(db.Model):
 with app.app_context():
     db.create_all()
 
+openai.api_key = "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"
+
+messages = [
+    {"role": "system", "content": "You are a chat bot that is an expert on ecology and saving the environment trying to assist students who want to contribute."},
+]
+
 @app.route('/', methods=["GET","POST"])
 def home():
-    return render_template("home.html")
+    if request.method == "POST":
+        user_input = request.form["user_input"]
+
+        if user_input.lower() == "quit":
+            return render_template("index.html", chat_log="Chat session ended.")
+
+        messages.append({"role": "user", "content": user_input})
+
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=messages
+        )
+
+        chat_message = response['choices'][0]['message']['content']
+        messages.append({"role": "assistant", "content": chat_message})
+
+        return render_template("index.html", user_input=user_input, chat_log=f"User: {user_input}\nBot: {chat_message}")
+    else:
+        return render_template("index.html")
+
 
 @app.route('/dashboard', methods=['GET','POST'])
 def dashboard():

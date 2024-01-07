@@ -5,6 +5,34 @@
 {% block css %}
     <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
     <link rel="stylesheet" media="screen and (max-width:480px)" href="{{url_for('static', filename='phone/home.css')}}">
+    <style>
+        #popup-container {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #chat-log {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        #chat-toggle {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 {% endblock css %}
 {% block body %}
     <section id="home">
@@ -14,5 +42,29 @@
             </p>
         </div>
         <a href="https://discord.gg/VabvyaP6e2" class="btn">Join our Discord</a>
+        <button id="chat-toggle">Open Chat</button>
+        <div id="popup-container">
+            <div id="chat-log">
+                <!-- Display chat logs here -->
+                {% if user_input %}
+                    <p>User: {{ user_input }}</p>
+                    <p>Bot: {{ chat_log }}</p>
+                {% endif %}
+            </div>
+            <form action="/" method="post">
+                <label for="user_input">User:</label>
+                <input type="text" id="user_input" name="user_input">
+                <button type="submit">Send</button>
+            </form>
+        </div>
     </section>
+   
+
+    <script>
+        // Add JavaScript to toggle the visibility of the popup container
+        document.getElementById("chat-toggle").addEventListener("click", function() {
+            var popupContainer = document.getElementById("popup-container");
+            popupContainer.style.display = (popupContainer.style.display === "none" || popupContainer.style.display === "") ? "block" : "none";
+        });
+    </script>
 {% endblock body %}
