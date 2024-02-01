@@ -6,33 +6,100 @@
     <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
     <link rel="stylesheet" media="screen and (max-width:480px)" href="{{url_for('static', filename='phone/home.css')}}">
     <style>
-        #popup-container {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            max-width: 300px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+           /* Style for the input field */
+           form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        #chat-log {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
+    /* Style for the label above the input */
+    label {
+        margin-bottom: 5px;
+    }
 
-        #chat-toggle {
-            cursor: pointer;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-    </style>
+    /* Style for the input field and submit button on the same line */
+    .input-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    /* Style for the input field */
+    input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    /* Style for the submit button */
+    button[type="submit"] {
+        padding: 5px;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+
+        font-size: 16px;
+    }
+
+    /* Optional hover effect for the button */
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    #popup-container {
+        display: none;
+        position: fixed;
+        bottom: 70px; /* Adjust as needed */
+        right: 20px; /* Adjust as needed */
+        max-width: 300px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        padding: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 999; /* Set a high z-index value */
+        transition: bottom 0.3s ease; /* Add smooth transition */
+    }
+
+    #chat-log {
+        max-height: 150px; /* Adjust as needed */
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    #chat-input {
+        width: calc(100% - 20px);
+        padding: 8px;
+        margin-bottom: 100px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    #chat-toggle {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        position: fixed;
+        bottom: 20px; /* Adjust as needed */
+        right: 20px; /* Adjust as needed */
+        z-index: 1000; /* Set a higher z-index value */
+    }
+    /* Adjust the positioning of the popup above the button */
+    #popup-container.active {
+        bottom: 80px; /* Adjust as needed */
+    }
+</style>
 {% endblock css %}
 {% block body %}
     <section id="home">
@@ -52,7 +119,7 @@
                 {% endif %}
             </div>
             <form action="/" method="post">
-                <label for="user_input">User:</label>
+                <label for="user_input">Input:</label>
                 <input type="text" id="user_input" name="user_input">
                 <button type="submit">Send</button>
             </form>
@@ -61,10 +128,13 @@
    
 
     <script>
-        // Add JavaScript to toggle the visibility of the popup container
-        document.getElementById("chat-toggle").addEventListener("click", function() {
+        document.addEventListener("DOMContentLoaded", function () {
+            var chatToggle = document.getElementById("chat-toggle");
             var popupContainer = document.getElementById("popup-container");
-            popupContainer.style.display = (popupContainer.style.display === "none" || popupContainer.style.display === "") ? "block" : "none";
+    
+            chatToggle.addEventListener("click", function () {
+                popupContainer.style.display = (popupContainer.style.display === "none" || popupContainer.style.display === "") ? "block" : "none";
+            });
         });
     </script>
 {% endblock body %}
