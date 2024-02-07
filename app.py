@@ -80,7 +80,7 @@ class Contact(db.Model):
 with app.app_context():
     db.create_all()
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 messages = [
     {"role": "system", "content": "You are a chat bot that is an expert on ecology and saving the environment trying to assist students who want to contribute."},
